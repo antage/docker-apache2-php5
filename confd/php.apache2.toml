@@ -1,0 +1,9 @@
+[template]
+src = "php.apache2.ini.tmpl"
+dest = "/etc/php5/apache2/php.ini"
+mode = "0644"
+
+keys = [
+    "/php/timezone",
+    "/php/smtp"
+]
