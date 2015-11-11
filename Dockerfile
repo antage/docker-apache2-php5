@@ -38,8 +38,6 @@ RUN \
 
 EXPOSE 8080
 
-STOPSIGNAL SIGWINCH
-
 VOLUME ["/var/www", "/var/log/apache2", "/var/lib/php5/sessions"]
 
 ENV LANG=C
