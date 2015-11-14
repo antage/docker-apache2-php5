@@ -16,6 +16,8 @@ Just run `make`.
 
 ## Environment variables
 
+* `CREATE_USER_UID`
+* `CREATE_USER_GID`
 * `APACHE_RUN_USER`
 * `APACHE_RUN_GROUP`
 * `APACHE_MODS`

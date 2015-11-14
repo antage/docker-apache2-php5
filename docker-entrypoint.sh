@@ -1,6 +1,15 @@
 #!/bin/sh
 set -e
 
+if [ "$CREATE_USER_UID" -a "$CREATE_USER_GID" ]; then
+    echo "Create 'site-owner' group with GID=$CREATE_USER_GID"
+    groupadd -g $CREATE_USER_GID site-owner
+    echo "Add 'www-data' user to group 'site-owner'"
+    usermod -a -G site-owner www-data
+    echo "Create 'site-owner' user with UID=$CREATE_USER_UID, GID=$CREATE_USER_GID"
+    useradd -d /var/www -g $CREATE_USER_GID -s /bin/false -M -N -u $CREATE_USER_UID site-owner
+fi
+
 if [ "$1" = 'apache2' ]; then
     export APACHE_SERVER_NAME="${APACHE_SERVER_NAME:-$(hostname)}"
     export APACHE_DOCUMENT_ROOT="${APACHE_DOCUMENT_ROOT:-/var/www/html}"
