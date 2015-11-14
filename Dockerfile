@@ -38,14 +38,11 @@ RUN \
 
 EXPOSE 8080
 
-VOLUME ["/var/www", "/var/log/apache2", "/var/lib/php5/sessions"]
-
 ENV LANG=C
 ENV APACHE_LOCK_DIR         /var/lock/apache2
 ENV APACHE_RUN_DIR          /var/run/apache2
 ENV APACHE_PID_FILE         ${APACHE_RUN_DIR}/apache2.pid
 ENV APACHE_LOG_DIR          /var/log/apache2
-ENV APACHE_ULIMIT_MAX_FILES 'ulimit -n 65536'
 ENV APACHE_RUN_USER         www-data
 ENV APACHE_RUN_GROUP        www-data
 ENV PHP_TIMEZONE            UTC
