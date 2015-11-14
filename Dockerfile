@@ -9,6 +9,8 @@ RUN \
         php5-cli \
         php5-mysql \
         php5-gd \
+        php5-mcrypt \
+        php5-xsl \
         php5 \
         curl \
         ca-certificates \
