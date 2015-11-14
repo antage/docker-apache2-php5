@@ -7,6 +7,8 @@ RUN \
         apache2-mpm-prefork \
         apache2 \
         php5-cli \
+        php5-mysql \
+        php5-gd \
         php5 \
         curl \
         ca-certificates \
