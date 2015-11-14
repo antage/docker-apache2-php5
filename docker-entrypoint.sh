@@ -16,11 +16,11 @@ if [ "$1" = 'apache2' ]; then
 
     export PHP_TIMEZONE="${PHP_TIMEZONE:-UTC}"
 
-    for mod in $APACHE_MODS; do
+    for mod in $( echo $APACHE_MODS | tr ',' ' '); do
         a2enmod -q $mod
     done
 
-    for mod in $PHP_MODS; do
+    for mod in $(echo $PHP_MODS | tr ',' ' '); do
         echo "Enabling PHP 5.x module '$mod'."
         php5enmod -s ALL $mod
     done
