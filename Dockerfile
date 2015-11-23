@@ -4,16 +4,20 @@ RUN \
     DEBIAN_FRONTEND=noninteractive \
     apt-get -y -q update \
     && apt-get -y -q --no-install-recommends install \
+        curl \
+        ca-certificates \
         apache2-mpm-prefork \
         apache2 \
         php5-cli \
         php5-mysql \
         php5-gd \
         php5-mcrypt \
+        php5-curl \
+        php5-memcache \
         php5-xsl \
+        php5-xdebug \
         php5 \
-        curl \
-        ca-certificates \
+        php-pear \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm /var/log/dpkg.log \
@@ -26,6 +30,8 @@ RUN \
     && rm -rf /tmp/ioncube \
     && rm /tmp/ioncube.tar.gz \
     && echo "; configuration for php ionCube loader module\n; priority=00\nzend_extension=ioncube_loader.so" > /etc/php5/mods-available/ioncube_loader.ini \
+    && /usr/bin/pear channel-discover pear.geometria-lab.net \
+    && /usr/bin/pear install geometria-lab/Rediska-beta \
     && curl -#L https://github.com/kelseyhightower/confd/releases/download/v0.10.0/confd-0.10.0-linux-amd64 -o /usr/local/bin/confd \
     && chmod 755 /usr/local/bin/confd \
     && mkdir -p /etc/confd/conf.d \
