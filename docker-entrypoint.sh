@@ -13,8 +13,13 @@ fi
 if [ -n "$CREATE_SYMLINKS" ]; then
 	for link in ${CREATE_SYMLINKS//,/ }; do
 		TARGET=${link%>*}
+		TARGET_DIR=${TARGET%/*}
 		FROM=${link#*>}
 		echo "Creating symlink from '${FROM}' to '${TARGET}'"
+		if [ ! -d $TARGET_DIR ]; then
+			echo -e "\tcreating directory '${TARGET_DIR}'"
+			mkdir -p $TARGET_DIR
+		fi
 		ln -sf $FROM $TARGET
 	done
 fi
