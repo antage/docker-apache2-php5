@@ -45,7 +45,7 @@ RUN \
     && rm /etc/apache2/conf-enabled/* \
     && rm /etc/apache2/mods-enabled/* \
     && a2enmod mpm_prefork rewrite php5 env dir auth_basic authn_file authz_user authz_host access_compat \
-	&& rm /etc/apache2/sites-enabled/000-default.conf
+    && rm /etc/apache2/sites-enabled/000-default.conf
 
 EXPOSE 8080
 
@@ -57,6 +57,7 @@ ENV APACHE_LOG_DIR          /var/log/apache2
 ENV APACHE_RUN_USER         www-data
 ENV APACHE_RUN_GROUP        www-data
 ENV APACHE_ALLOW_OVERRIDE   None
+ENV APACHE_ALLOW_ENCODED_SLASHES Off
 ENV PHP_TIMEZONE            UTC
 
 COPY confd/php.cli.toml /etc/confd/conf.d/

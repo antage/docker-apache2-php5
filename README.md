@@ -25,6 +25,7 @@ Just run `make`.
 * `APACHE_DOCUMENT_ROOT` (/var/www/html by default)
 * `APACHE_SERVER_NAME` (hostname by default)
 * `APACHE_ALLOW_OVERRIDE` ('None' by default)
+* `APACHE_ALLOW_ENCODED_SLASHES` ('Off' by default)
 * `PHP_MODS`
 * `PHP_TIMEZONE` ('UTC' by default)
 * `PHP_SMTP` - MTA SMTP IP-address/hostname
