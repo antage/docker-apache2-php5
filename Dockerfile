@@ -44,7 +44,8 @@ RUN \
     && php5enmod -s ALL opcache \
     && rm /etc/apache2/conf-enabled/* \
     && rm /etc/apache2/mods-enabled/* \
-    && a2enmod mpm_prefork rewrite php5 env dir auth_basic authn_file authz_user authz_host access_compat
+    && a2enmod mpm_prefork rewrite php5 env dir auth_basic authn_file authz_user authz_host access_compat \
+	&& rm /etc/apache2/sites-enabled/000-default.conf
 
 EXPOSE 8080
 
