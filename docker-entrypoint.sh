@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 if [ "$CREATE_USER_UID" -a "$CREATE_USER_GID" ]; then
@@ -8,6 +8,15 @@ if [ "$CREATE_USER_UID" -a "$CREATE_USER_GID" ]; then
     usermod -a -G site-owner www-data
     echo "Create 'site-owner' user with UID=$CREATE_USER_UID, GID=$CREATE_USER_GID"
     useradd -d /var/www -g $CREATE_USER_GID -s /bin/false -M -N -u $CREATE_USER_UID site-owner
+fi
+
+if [ -n "$CREATE_SYMLINKS" ]; then
+	for link in ${CREATE_SYMLINKS//,/ }; do
+		TARGET=${link%>*}
+		FROM=${link#*>}
+		echo "Creating symlink from '${FROM}' to '${TARGET}'"
+		ln -sf $FROM $TARGET
+	done
 fi
 
 if [ "$1" = 'apache2' ]; then
