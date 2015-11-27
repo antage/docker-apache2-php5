@@ -14,6 +14,10 @@ Just run `make`.
 * `/var/log/apache2`
 * `/var/www`
 
+## Exposed ports
+
+* 8080/tcp
+
 ## Environment variables
 
 * `CREATE_USER_UID`
