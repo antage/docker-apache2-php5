@@ -6,6 +6,7 @@ RUN \
     && apt-get -y -q --no-install-recommends install \
         curl \
         ca-certificates \
+		imagemagick \
         apache2-mpm-prefork \
         apache2 \
         php5-cli \
