@@ -1,9 +1,14 @@
 FROM debian:stable
 
 RUN \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get -y -q update \
-    && apt-get -y -q --no-install-recommends install \
+	echo "deb http://www.deb-multimedia.org jessie main non-free" > /etc/apt/sources.list.d/deb-multimedia.list \
+	&& echo "deb http://deb.antage.name jessie main" > /etc/apt/sources.list.d/antage.list \
+    && apt-get -y -q update \
+	&& apt-get -y -q --no-install-recommends --force-yes install deb-multimedia-keyring curl \
+	&& curl -s http://deb.antage.name/apt.key | apt-key add - \
+	&& apt-get -y -q update \
+    && DEBIAN_FRONTEND=noninteractive \
+    apt-get -y -q --no-install-recommends install \
         curl \
         ca-certificates \
 		imagemagick \
@@ -19,6 +24,9 @@ RUN \
         php5-xdebug \
         php5 \
         php-pear \
+		ffmpeg \
+		imagemagick \
+		flvtool2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm /var/log/dpkg.log \
