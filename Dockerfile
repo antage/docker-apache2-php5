@@ -22,11 +22,12 @@ RUN \
         php5-memcache \
         php5-xsl \
         php5-xdebug \
+        php5-intl \
         php5 \
         php-pear \
-		ffmpeg \
-		imagemagick \
-		flvtool2 \
+        ffmpeg \
+        imagemagick \
+        flvtool2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm /var/log/dpkg.log \
