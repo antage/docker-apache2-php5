@@ -29,6 +29,8 @@ RUN \
         imagemagick \
         flvtool2 \
 		ghostscript \
+		wget \
+		pngquant \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm /var/log/dpkg.log \
