@@ -28,6 +28,7 @@ RUN \
         ffmpeg \
         imagemagick \
         flvtool2 \
+		ghostscript \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm /var/log/dpkg.log \
