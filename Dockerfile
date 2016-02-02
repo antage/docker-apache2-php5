@@ -12,6 +12,7 @@ RUN \
         curl \
         ca-certificates \
 		imagemagick \
+		msmtp-mta \
         apache2-mpm-prefork \
         apache2 \
         php5-cli \
@@ -87,6 +88,8 @@ COPY confd/templates/php.apache2.ini.tmpl /etc/confd/templates/
 COPY confd/apache2.toml /etc/confd/conf.d/
 COPY confd/templates/apache2.conf.tmpl /etc/confd/templates/
 RUN /usr/local/bin/confd -onetime -backend env
+COPY confd/msmtprc.toml /etc/confd/conf.d/
+COPY confd/templates/msmtprc.tmpl /etc/confd/templates/
 
 COPY ports.conf /etc/apache2/ports.conf
 COPY apache2-mods/mpm_prefork.conf /etc/apache2/mods-available/mpm_prefork.conf

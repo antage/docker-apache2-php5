@@ -1,0 +1,8 @@
+[template]
+src = "msmtprc.tmpl"
+dest = "/etc/msmtprc"
+mode = "0644"
+
+keys = [
+    "/php/smtp"
+]
