@@ -4,5 +4,6 @@ dest = "/etc/msmtprc"
 mode = "0644"
 
 keys = [
-    "/php/smtp"
+    "/php/smtp",
+	"/php/smtp/from"
 ]
