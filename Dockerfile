@@ -24,6 +24,7 @@ RUN \
         php5-xsl \
         php5-xdebug \
         php5-intl \
+		php5-xmlrpc \
         php5 \
         php-pear \
         ffmpeg \
