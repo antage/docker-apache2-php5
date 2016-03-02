@@ -37,7 +37,7 @@ RUN \
     && rm -rf /var/lib/apt/lists/* \
     && rm /var/log/dpkg.log \
     && rm /var/www/html/index.html \
-	&& rmdir /var/www/html \
+    && rmdir /var/www/html \
     && curl -#L http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz -o /tmp/ioncube.tar.gz \
     && tar xzf /tmp/ioncube.tar.gz -C /tmp/ \
     && install -m 0644 \
