@@ -37,6 +37,7 @@ RUN \
     && rm -rf /var/lib/apt/lists/* \
     && rm /var/log/dpkg.log \
     && rm /var/www/html/index.html \
+	&& rmdir /var/www/html \
     && curl -#L http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz -o /tmp/ioncube.tar.gz \
     && tar xzf /tmp/ioncube.tar.gz -C /tmp/ \
     && install -m 0644 \
@@ -94,11 +95,11 @@ COPY confd/templates/msmtprc.tmpl /etc/confd/templates/
 
 COPY ports.conf /etc/apache2/ports.conf
 COPY apache2-mods/mpm_prefork.conf /etc/apache2/mods-available/mpm_prefork.conf
+COPY apache2-mods/php5.conf /etc/apache2/mods-available/php5.conf
+COPY apache2-mods/mime.conf /etc/apache2/mods-available/mime.conf
 
 COPY apache2-mods/remoteip.conf /etc/apache2/mods-available/remoteip.conf
 RUN a2enmod remoteip
-
-COPY index.php /var/www/html/index.php
 
 COPY docker-entrypoint.sh /
 
