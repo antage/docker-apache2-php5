@@ -95,8 +95,11 @@ COPY confd/templates/msmtprc.tmpl /etc/confd/templates/
 
 COPY ports.conf /etc/apache2/ports.conf
 COPY apache2-mods/mpm_prefork.conf /etc/apache2/mods-available/mpm_prefork.conf
+
 COPY apache2-mods/php5.conf /etc/apache2/mods-available/php5.conf
 COPY apache2-mods/mime.conf /etc/apache2/mods-available/mime.conf
+COPY apache2-mods/alias.conf /etc/apache2/mods-available/alias.conf
+COPY apache2-mods/autoindex.conf /etc/apache2/mods-available/autoindex.conf
 
 COPY apache2-mods/remoteip.conf /etc/apache2/mods-available/remoteip.conf
 RUN a2enmod remoteip
