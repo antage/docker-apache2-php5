@@ -15,6 +15,9 @@ RUN \
 		msmtp-mta \
         apache2-mpm-prefork \
         apache2 \
+        apache2-dbg \
+        libapr1-dbg \
+        libaprutil1-dbg \
         php5-cli \
         php5-mysql \
         php5-gd \
@@ -27,6 +30,8 @@ RUN \
 		php5-xmlrpc \
         php5 \
         php-pear \
+        php5-dbg \
+        gdb \
         ffmpeg \
         imagemagick \
         flvtool2 \
@@ -82,6 +87,11 @@ ENV APACHE_RUN_GROUP        www-data
 ENV APACHE_ALLOW_OVERRIDE   None
 ENV APACHE_ALLOW_ENCODED_SLASHES Off
 ENV PHP_TIMEZONE            UTC
+
+COPY apache2-coredumps.conf /etc/security/limits.d/apache2-coredumps.conf
+RUN mkdir /tmp/apache2-coredumps
+COPY coredump.conf /etc/apache2/conf.d/coredump.conf
+COPY .gdbinit /root/.gdbinit
 
 COPY confd/php.cli.toml /etc/confd/conf.d/
 COPY confd/templates/php.cli.ini.tmpl /etc/confd/templates/

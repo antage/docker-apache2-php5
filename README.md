@@ -23,6 +23,7 @@ Just run `make`.
 * `CREATE_USER_UID`
 * `CREATE_USER_GID`
 * `CREATE_SYMLINKS` (for example: "/var/www/dir1>/var/dir1,/var/www/dir2>/var/dir2")
+* `APACHE_COREDUMP`
 * `APACHE_RUN_USER`
 * `APACHE_RUN_GROUP`
 * `APACHE_MODS`
