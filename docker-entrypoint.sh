@@ -39,6 +39,10 @@ if [ "$1" = 'apache2' ]; then
         php5enmod -s ALL $mod
     done
 
+	if [ -n "$APACHE_COREDUMP" ]; then
+		ln -s /etc/apache2/conf-available/coredump.conf /etc/apache2/conf-enabled/coredump.conf
+	fi
+
     echo "Updating apache/php configuration files."
     /usr/local/bin/confd -onetime -backend env
 
