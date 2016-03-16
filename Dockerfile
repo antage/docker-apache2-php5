@@ -89,7 +89,7 @@ ENV APACHE_ALLOW_ENCODED_SLASHES Off
 ENV PHP_TIMEZONE            UTC
 
 COPY apache2-coredumps.conf /etc/security/limits.d/apache2-coredumps.conf
-RUN mkdir /tmp/apache2-coredumps
+RUN mkdir /tmp/apache2-coredumps && chown www-data:www-data /tmp/apache2-coredumps && chmod 700 /tmp/apache2-coredumps
 COPY coredump.conf /etc/apache2/conf-available/coredump.conf
 COPY .gdbinit /root/.gdbinit
 
