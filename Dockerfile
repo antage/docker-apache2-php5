@@ -90,7 +90,8 @@ ENV PHP_TIMEZONE            UTC
 
 COPY apache2-coredumps.conf /etc/security/limits.d/apache2-coredumps.conf
 RUN mkdir /tmp/apache2-coredumps
-COPY coredump.conf /etc/apache2/conf.d/coredump.conf
+COPY coredump.conf /etc/apache2/conf-available/coredump.conf
+RUN ln -s /etc/apache2/conf-available/coredump.conf /etc/apache2/conf-enabled/coredump.conf
 COPY .gdbinit /root/.gdbinit
 
 COPY confd/php.cli.toml /etc/confd/conf.d/
