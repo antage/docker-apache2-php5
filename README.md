@@ -11,6 +11,7 @@ Just run `make`.
 ## Volumes
 
 * `/var/lib/php5/sessions` (tmpfs is recommended)
+* `/tmp/apache2-coredumps` (optional)
 * `/var/log/apache2`
 * `/var/www`
 
