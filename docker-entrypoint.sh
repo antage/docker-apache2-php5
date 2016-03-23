@@ -40,7 +40,7 @@ if [ "$1" = 'apache2' ]; then
     done
 
 	if [ -n "$APACHE_COREDUMP" ]; then
-		ln -s /etc/apache2/conf-available/coredump.conf /etc/apache2/conf-enabled/coredump.conf
+		a2enconf coredump
 	fi
 
     echo "Updating apache/php configuration files."
