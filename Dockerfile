@@ -87,6 +87,7 @@ ENV APACHE_RUN_GROUP        www-data
 ENV APACHE_ALLOW_OVERRIDE   None
 ENV APACHE_ALLOW_ENCODED_SLASHES Off
 ENV PHP_TIMEZONE            UTC
+ENV PHP_MBSTRING_FUNC_OVERLOAD 0
 
 COPY apache2-coredumps.conf /etc/security/limits.d/apache2-coredumps.conf
 RUN mkdir /tmp/apache2-coredumps && chown ${APACHE_RUN_USER}:${APACHE_RUN_GROUP} /tmp/apache2-coredumps && chmod 700 /tmp/apache2-coredumps

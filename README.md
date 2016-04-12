@@ -36,3 +36,4 @@ Just run `make`.
 * `PHP_TIMEZONE` ('UTC' by default)
 * `PHP_SMTP` - MTA SMTP IP-address/hostname
 * `PHP_SMTP_FROM` - default `From` header for mail.
+* `PHP_MBSTRING_FUNC_OVERLOAD` - `mbstring.func_overload` (0 by default).

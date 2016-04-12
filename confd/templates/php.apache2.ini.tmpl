@@ -1741,7 +1741,7 @@ mbstring.internal_encoding = UTF-8
 ; 2: Overload str*() functions
 ; 4: Overload ereg*() functions
 ; http://php.net/mbstring.func-overload
-;mbstring.func_overload = 2
+mbstring.func_overload = {{getv "/php/mbstring/func/overload"}}
 
 ; enable strict encoding detection.
 ; Default: Off
