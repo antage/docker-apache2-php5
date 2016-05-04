@@ -94,6 +94,7 @@ RUN mkdir /tmp/apache2-coredumps && chown ${APACHE_RUN_USER}:${APACHE_RUN_GROUP}
 COPY coredump.conf /etc/apache2/conf-available/coredump.conf
 COPY .gdbinit /root/.gdbinit
 
+COPY policy.xml /etc/ImageMagick-6/policy.xml
 COPY confd/php.cli.toml /etc/confd/conf.d/
 COPY confd/templates/php.cli.ini.tmpl /etc/confd/templates/
 COPY confd/php.apache2.toml /etc/confd/conf.d/
