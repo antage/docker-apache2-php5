@@ -84,6 +84,8 @@ ENV APACHE_PID_FILE         ${APACHE_RUN_DIR}/apache2.pid
 ENV APACHE_LOG_DIR          /var/log/apache2
 ENV APACHE_RUN_USER         www-data
 ENV APACHE_RUN_GROUP        www-data
+ENV APACHE_MAX_REQUEST_WORKERS 32
+ENV APACHE_MAX_CONNECTIONS_PER_CHILD 1024
 ENV APACHE_ALLOW_OVERRIDE   None
 ENV APACHE_ALLOW_ENCODED_SLASHES Off
 ENV PHP_TIMEZONE            UTC
@@ -102,12 +104,13 @@ COPY confd/php.apache2.toml /etc/confd/conf.d/
 COPY confd/templates/php.apache2.ini.tmpl /etc/confd/templates/
 COPY confd/apache2.toml /etc/confd/conf.d/
 COPY confd/templates/apache2.conf.tmpl /etc/confd/templates/
+COPY confd/mpm_prefork.toml /etc/confd/conf.d/
+COPY confd/templates/mpm_prefork.conf.tmpl /etc/confd/templates/
 RUN /usr/local/bin/confd -onetime -backend env
 COPY confd/msmtprc.toml /etc/confd/conf.d/
 COPY confd/templates/msmtprc.tmpl /etc/confd/templates/
 
 COPY ports.conf /etc/apache2/ports.conf
-COPY apache2-mods/mpm_prefork.conf /etc/apache2/mods-available/mpm_prefork.conf
 
 COPY apache2-mods/php5.conf /etc/apache2/mods-available/php5.conf
 COPY apache2-mods/mime.conf /etc/apache2/mods-available/mime.conf

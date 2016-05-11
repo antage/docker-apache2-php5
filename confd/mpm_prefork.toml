@@ -1,0 +1,9 @@
+[template]
+src = "mpm_prefork.conf.tmpl"
+dest = "/etc/apache2/mods-available/mpm_prefork.conf"
+mode = "0644"
+
+keys = [
+    "/apache/max/request/workers",
+    "/apache/max/connections/per/child",
+]

@@ -6,11 +6,11 @@
 # MaxConnectionsPerChild: maximum number of requests a server process serves
 
 <IfModule mpm_prefork_module>
-	StartServers			 	4
-	MinSpareServers		  		4
-	MaxSpareServers		 		8
-	MaxRequestWorkers	  		32
-	MaxConnectionsPerChild		1024
+    StartServers            2
+    MinSpareServers         2
+    MaxSpareServers         8
+    MaxRequestWorkers       {{getv "/apache/max/request/workers"}}
+    MaxConnectionsPerChild  {{getv "/apache/max/connections/per/child"}}
 </IfModule>
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
