@@ -387,6 +387,7 @@ max_input_time = 60
 
 ; How many GET/POST/COOKIE input variables may be accepted
 ; max_input_vars = 1000
+max_input_vars = 10000
 
 ; Maximum amount of memory a script may consume (128MB)
 ; http://php.net/memory-limit
@@ -835,7 +836,7 @@ allow_url_include = Off
 
 ; Default timeout for socket based streams (seconds)
 ; http://php.net/default-socket-timeout
-default_socket_timeout = 5
+default_socket_timeout = 60
 
 ; If your scripts have to deal with files from Macintosh systems,
 ; or you are running on a Mac and need to deal with files from
