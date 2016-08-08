@@ -39,3 +39,5 @@ Just run `make`.
 * `PHP_SMTP` - MTA SMTP IP-address/hostname
 * `PHP_SMTP_FROM` - default `From` header for mail.
 * `PHP_MBSTRING_FUNC_OVERLOAD` - `mbstring.func_overload` (0 by default).
+* `PHP_NEWRELIC_LICENSE_KEY` - Newrelic agent license key (empty and disabled by default).
+* `PHP_NEWRELIC_APPNAME` - Newrelic application name (empty by default).

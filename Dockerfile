@@ -1,18 +1,19 @@
 FROM debian:stable
 
 RUN \
-	echo "deb http://www.deb-multimedia.org jessie main non-free" > /etc/apt/sources.list.d/deb-multimedia.list \
-	&& echo "deb http://deb.antage.name jessie main" > /etc/apt/sources.list.d/antage.list \
+    echo "deb http://www.deb-multimedia.org jessie main non-free" > /etc/apt/sources.list.d/deb-multimedia.list \
+    && echo "deb http://deb.antage.name jessie main" > /etc/apt/sources.list.d/antage.list \
+    && echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sources.list.d/newrelic.list \
     && apt-get -y -q update \
-	&& apt-get -y -q --no-install-recommends --force-yes install deb-multimedia-keyring curl \
-	&& curl -s http://deb.antage.name/apt.key | apt-key add - \
-	&& apt-get -y -q update \
-    && DEBIAN_FRONTEND=noninteractive \
-    apt-get -y -q --no-install-recommends install \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends --force-yes install deb-multimedia-keyring curl ca-certificates \
+    && curl -s http://deb.antage.name/apt.key | apt-key add - \
+    && curl -s https://download.newrelic.com/548C16BF.gpg | apt-key add - \
+    && apt-get -y -q update \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends install \
         curl \
         ca-certificates \
-		imagemagick \
-		msmtp-mta \
+        imagemagick \
+        msmtp-mta \
         apache2-mpm-prefork \
         apache2 \
         apache2-dbg \
@@ -27,7 +28,7 @@ RUN \
         php5-xsl \
         php5-xdebug \
         php5-intl \
-		php5-xmlrpc \
+        php5-xmlrpc \
         php5 \
         php-pear \
         php5-dbg \
@@ -35,9 +36,10 @@ RUN \
         ffmpeg \
         imagemagick \
         flvtool2 \
-		ghostscript \
-		wget \
-		pngquant \
+        ghostscript \
+        wget \
+        pngquant \
+        newrelic-php5 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm /var/log/dpkg.log \
@@ -107,6 +109,8 @@ COPY confd/templates/mpm_prefork.conf.tmpl /etc/confd/templates/
 RUN /usr/local/bin/confd -onetime -backend env
 COPY confd/msmtprc.toml /etc/confd/conf.d/
 COPY confd/templates/msmtprc.tmpl /etc/confd/templates/
+COPY confd/newrelic.toml /etc/confd/conf.d/
+COPY confd/templates/newrelic.ini.tmpl /etc/confd/templates/
 
 COPY ports.conf /etc/apache2/ports.conf
 

@@ -1,0 +1,9 @@
+[template]
+src = "newrelic.ini.tmpl"
+dest = "/etc/php5/mods-available/newrelic.ini"
+mode = "0644"
+
+keys = [
+    "/php/newrelic/license/key",
+    "/php/newrelic/appname"
+]

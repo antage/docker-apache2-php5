@@ -11,17 +11,17 @@ if [ "$CREATE_USER_UID" -a "$CREATE_USER_GID" ]; then
 fi
 
 if [ -n "$CREATE_SYMLINKS" ]; then
-	for link in ${CREATE_SYMLINKS//,/ }; do
-		TARGET=${link%>*}
-		TARGET_DIR=${TARGET%/*}
-		FROM=${link#*>}
-		echo "Creating symlink from '${FROM}' to '${TARGET}'"
-		if [ ! -d $TARGET_DIR ]; then
-			echo -e "\tcreating directory '${TARGET_DIR}'"
-			mkdir -p $TARGET_DIR
-		fi
-		ln -sf $FROM $TARGET
-	done
+    for link in ${CREATE_SYMLINKS//,/ }; do
+        TARGET=${link%>*}
+        TARGET_DIR=${TARGET%/*}
+        FROM=${link#*>}
+        echo "Creating symlink from '${FROM}' to '${TARGET}'"
+        if [ ! -d $TARGET_DIR ]; then
+            echo -e "\tcreating directory '${TARGET_DIR}'"
+            mkdir -p $TARGET_DIR
+        fi
+        ln -sf $FROM $TARGET
+    done
 fi
 
 if [ "$1" = 'apache2' ]; then
@@ -39,9 +39,13 @@ if [ "$1" = 'apache2' ]; then
         php5enmod -s ALL $mod
     done
 
-	if [ -n "$APACHE_COREDUMP" ]; then
-		a2enconf coredump
-	fi
+    if [ -n "$PHP_NEWRELIC_LICENSE_KEY" -a -n "$PHP_NEWRELIC_APPNAME" ]; then
+        php5enmod -s apache2 newrelic
+    fi
+
+    if [ -n "$APACHE_COREDUMP" ]; then
+        a2enconf coredump
+    fi
 
     echo "Updating apache/php configuration files."
     /usr/local/bin/confd -onetime -backend env
