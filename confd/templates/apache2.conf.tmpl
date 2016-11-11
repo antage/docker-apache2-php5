@@ -60,6 +60,8 @@ DocumentRoot ${APACHE_DOCUMENT_ROOT}
 
 AllowEncodedSlashes ${APACHE_ALLOW_ENCODED_SLASHES}
 
+LimitRequestFieldSize 16384
+
 IncludeOptional conf-enabled/*.conf
 
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
