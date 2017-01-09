@@ -29,6 +29,7 @@ RUN \
         php5-xdebug \
         php5-intl \
         php5-xmlrpc \
+        php5-apcu \
         php5 \
         php-pear \
         php5-dbg \
