@@ -2,16 +2,17 @@ FROM debian:stable
 
 RUN \
     echo "deb http://www.deb-multimedia.org jessie main non-free" > /etc/apt/sources.list.d/deb-multimedia.list \
+    && apt-get -y -q update \
+    && echo "deb https://packagecloud.io/phalcon/stable/debian/ jessie main" > /etc/apt/sources.list.d/phalcon.list \
     && echo "deb http://deb.antage.name jessie main" > /etc/apt/sources.list.d/antage.list \
     && echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sources.list.d/newrelic.list \
-    && apt-get -y -q update \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends --force-yes install deb-multimedia-keyring curl ca-certificates \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends --force-yes install apt-transport-https deb-multimedia-keyring curl ca-certificates \
     && curl -s http://deb.antage.name/apt.key | apt-key add - \
     && curl -s https://download.newrelic.com/548C16BF.gpg | apt-key add - \
+    && curl -s https://packagecloud.io/gpg.key | apt-key add - \
     && apt-get -y -q update \
     && DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends install \
         curl \
-        ca-certificates \
         imagemagick \
         msmtp-mta \
         apache2-mpm-prefork \
@@ -30,7 +31,10 @@ RUN \
         php5-intl \
         php5-xmlrpc \
         php5-apcu \
+        php5-phalcon \
+        php5-mongo \
         php5 \
+        php5-dev \
         php-pear \
         php5-dbg \
         gdb \
