@@ -1,4 +1,4 @@
 .PHONY: all
 
 all:
-	docker build -t apache2-php5:latest .
+	docker build -t apache2-php5-phalcon20:latest .
