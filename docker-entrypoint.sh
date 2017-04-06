@@ -24,31 +24,30 @@ if [ -n "$CREATE_SYMLINKS" ]; then
     done
 fi
 
+export PHP_TIMEZONE="${PHP_TIMEZONE:-UTC}"
+for mod in $(echo $PHP_MODS | tr ',' ' '); do
+    echo "Enabling PHP 5.x module '$mod'."
+    php5enmod -s ALL $mod
+done
+
+if [ -n "$PHP_NEWRELIC_LICENSE_KEY" -a -n "$PHP_NEWRELIC_APPNAME" ]; then
+    php5enmod -s apache2 newrelic
+fi
+
+export APACHE_SERVER_NAME="${APACHE_SERVER_NAME:-$(hostname)}"
+export APACHE_DOCUMENT_ROOT="${APACHE_DOCUMENT_ROOT:-/var/www/html}"
+
+echo "Updating apache/php configuration files."
+/usr/local/bin/confd -onetime -backend env
+
 if [ "$1" = 'apache2' ]; then
-    export APACHE_SERVER_NAME="${APACHE_SERVER_NAME:-$(hostname)}"
-    export APACHE_DOCUMENT_ROOT="${APACHE_DOCUMENT_ROOT:-/var/www/html}"
-
-    export PHP_TIMEZONE="${PHP_TIMEZONE:-UTC}"
-
-    for mod in $( echo $APACHE_MODS | tr ',' ' '); do
-        a2enmod -q $mod
-    done
-
-    for mod in $(echo $PHP_MODS | tr ',' ' '); do
-        echo "Enabling PHP 5.x module '$mod'."
-        php5enmod -s ALL $mod
-    done
-
-    if [ -n "$PHP_NEWRELIC_LICENSE_KEY" -a -n "$PHP_NEWRELIC_APPNAME" ]; then
-        php5enmod -s apache2 newrelic
-    fi
-
     if [ -n "$APACHE_COREDUMP" ]; then
         a2enconf coredump
     fi
 
-    echo "Updating apache/php configuration files."
-    /usr/local/bin/confd -onetime -backend env
+    for mod in $( echo $APACHE_MODS | tr ',' ' '); do
+        a2enmod -q $mod
+    done
 
     echo "Starting Apache 2.x in foreground."
     exec /usr/sbin/apache2 -D FOREGROUND
