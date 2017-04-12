@@ -33,6 +33,7 @@ RUN \
         php5-apcu \
         php5-phalcon \
         php5-mongo \
+        php5-amqp \
         php5 \
         php5-dev \
         php-pear \
