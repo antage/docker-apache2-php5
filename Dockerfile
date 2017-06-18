@@ -107,6 +107,8 @@ RUN mkdir /tmp/apache2-coredumps && chown ${APACHE_RUN_USER}:${APACHE_RUN_GROUP}
 COPY coredump.conf /etc/apache2/conf-available/coredump.conf
 COPY .gdbinit /root/.gdbinit
 
+COPY opcache_bitrix.blacklist /etc/php5/opcache_bitrix.blacklist
+
 COPY confd/php.cli.toml /etc/confd/conf.d/
 COPY confd/templates/php.cli.ini.tmpl /etc/confd/templates/
 COPY confd/php.apache2.toml /etc/confd/conf.d/
