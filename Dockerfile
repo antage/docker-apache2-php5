@@ -72,7 +72,10 @@ RUN \
     && gpg --verify /usr/local/bin/gosu.asc \
     && rm /usr/local/bin/gosu.asc \
     && rm -r /root/.gnupg/ \
-    && chmod +x /usr/local/bin/gosu
+    && chmod +x /usr/local/bin/gosu \
+    && curl -o /usr/local/bin/composer https://getcomposer.org/download/1.4.2/composer.phar \
+    && chown root:root /usr/local/bin/composer \
+    && chmod 0755 /usr/local/bin/composer
 
 RUN \
     rm /etc/php5/apache2/conf.d/* \
