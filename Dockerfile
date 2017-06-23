@@ -46,6 +46,7 @@ RUN \
         wget \
         pngquant \
         newrelic-php5 \
+        git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm /var/log/dpkg.log \
