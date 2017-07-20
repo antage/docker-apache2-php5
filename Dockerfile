@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:jessie
 
 RUN \
     echo "deb http://www.deb-multimedia.org jessie main non-free" > /etc/apt/sources.list.d/deb-multimedia.list \
