@@ -51,6 +51,8 @@ LogFormat "%h %l %u %t \"%r\" %>s %O" common
 LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
 
+CustomLog /var/log/apache2/access.log combined
+
 ServerTokens Prod
 ServerSignature Off
 TraceEnable Off
