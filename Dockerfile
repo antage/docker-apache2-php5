@@ -86,9 +86,9 @@ RUN \
     && rm /etc/apache2/sites-enabled/000-default.conf \
     && rm /var/run/newrelic-daemon.pid
 
-COPY Rediska-0.4.0.tgz /tmp/Rediska-0.4.0.tar.gz
-RUN pear install /tmp/Rediska-0.4.0.tar.gz \
-    && rm /tmp/Rediska-0.4.0.tar.gz
+COPY Rediska-0.5.10.tgz /tmp/Rediska-0.5.10.tar.gz
+RUN pear install /tmp/Rediska-0.5.10.tar.gz \
+    && rm /tmp/Rediska-0.5.10.tar.gz
 
 EXPOSE 8080
 
