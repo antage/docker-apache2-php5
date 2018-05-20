@@ -8,8 +8,8 @@ KeepAliveTimeout 5
 User ${APACHE_RUN_USER}
 Group ${APACHE_RUN_GROUP}
 HostnameLookups Off
-ErrorLog ${APACHE_LOG_DIR}/error.log
-LogLevel error
+
+LogLevel {{ getv "/apache/loglevel" }}
 
 GracefulShutdownTimeout 30
 
@@ -51,7 +51,18 @@ LogFormat "%a %l %u %t \"%r\" %>s %O" common
 LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
 
-CustomLog /var/log/apache2/access.log combined
+{{if getv "/apache/errorlog"}}
+ErrorLog {{ getv "/apache/errorlog" }}
+{{else}}
+ErrorLog ${APACHE_LOG_DIR}/error.log
+{{end}}
+
+{{if getv "/apache/customlog"}}
+CustomLog {{ getv "/apache/customlog" }}
+{{else}}
+CustomLog ${APACHE_LOG_DIR}/access.log combined
+{{end}}
+
 
 ServerTokens Prod
 ServerSignature Off
