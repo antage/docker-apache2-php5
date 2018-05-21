@@ -34,6 +34,9 @@ Just run `make`.
 * `APACHE_ALLOW_ENCODED_SLASHES` ('Off' by default)
 * `APACHE_MAX_REQUEST_WORKERS` (32 by default)
 * `APACHE_MAX_CONNECTIONS_PER_CHILD` (1024 by default)
+* `APACHE_LOGLEVEL` ('error' by default)
+* `APACHE_ERRORLOG` - a path for error log.
+* `APACHE_CUSTOMLOG` - a path for custom (access) log.
 * `PHP_MODS`
 * `PHP_TIMEZONE` ('UTC' by default)
 * `PHP_SMTP` - MTA SMTP IP-address/hostname
@@ -50,3 +53,11 @@ Following variables must be defined to run the container:
 
 * `PHP_SMTP`
 * `PHP_SMTP_FROM`
+
+## Redirect access and error log to stdout
+
+Set following environment variables:
+
+* `APACHE_CUSTOMLOG='"|/bin/cat" combined'`
+* `APACHE_ERRORLOG='"|/bin/cat"'`
+
