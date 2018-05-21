@@ -2,7 +2,7 @@
 
 Apache 2.x + mod\_php 5.x
 
-Based on debian:stable.
+Based on debian:jessie.
 
 ## Building
 
