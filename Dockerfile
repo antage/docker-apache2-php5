@@ -111,6 +111,7 @@ ENV PHP_MBSTRING_FUNC_OVERLOAD 0
 ENV PHP_ALWAYS_POPULATE_RAW_POST_DATA 0
 ENV PHP_NEWRELIC_LICENSE_KEY    ""
 ENV PHP_NEWRELIC_APPNAME        ""
+ENV PHP_NEWRELIC_FRAMEWORK      "no_framework"
 
 COPY apache2-coredumps.conf /etc/security/limits.d/apache2-coredumps.conf
 RUN mkdir /tmp/apache2-coredumps && chown ${APACHE_RUN_USER}:${APACHE_RUN_GROUP} /tmp/apache2-coredumps && chmod 700 /tmp/apache2-coredumps

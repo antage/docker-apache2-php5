@@ -530,7 +530,7 @@ newrelic.browser_monitoring.auto_instrument = false
 ;
 ;          Note that "drupal" covers only Drupal 6 and 7.
 ;
-newrelic.framework = "no_framework"
+newrelic.framework = "{{getv "/php/newrelic/framework"}}"
 
 ;
 ; Setting: newrelic.webtransaction.name.remove_trailing_path
