@@ -34,6 +34,7 @@ RUN \
         php5-phalcon \
         php5-mongo \
         php5-amqp \
+        php5-redis \
         php5 \
         php5-dev \
         php-pear \
