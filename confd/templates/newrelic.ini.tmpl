@@ -186,7 +186,7 @@ newrelic.appname = "{{getv "/php/newrelic/appname"}}"
 ;          for abstract sockets was added in PHP agent version 5.2.
 
 ;
-newrelic.daemon.port = "/var/run/newrelic.sock"
+newrelic.daemon.port = "{{getv "/php/newrelic/port"}}"
 
 ;
 ; Setting: newrelic.daemon.ssl
