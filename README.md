@@ -47,7 +47,7 @@ Just run `make`.
 * `PHP_NEWRELIC_LICENSE_KEY` - Newrelic agent license key (empty and disabled by default).
 * `PHP_NEWRELIC_APPNAME` - Newrelic application name (empty by default).
 * `PHP_NEWRELIC_FRAMEWORK` - Newrelic framework name ('no_framework' by default).
-* `PHP_NEWRELIC_PORT` - newrelic-daemon socket path or port number ('/runt/newrelic/newrelic.sock' by default).
+* `PHP_NEWRELIC_PORT` - newrelic-daemon socket path or port number ('/run/newrelic/newrelic.sock' by default).
 
 ## Required variables
 
