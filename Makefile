@@ -1,4 +1,4 @@
 .PHONY: all
 
 all:
-	docker build -t apache2-php5:latest .
+	docker build --progress=plain -t apache2-php5:latest .

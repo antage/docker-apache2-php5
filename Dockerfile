@@ -1,17 +1,14 @@
 FROM debian:jessie
 
+ENV DEBIAN_FRONTEND=noninteractive
 RUN \
     echo "deb http://www.deb-multimedia.org jessie main non-free" > /etc/apt/sources.list.d/deb-multimedia.list \
-    && apt-get -y -q update \
-    && echo "deb https://packagecloud.io/phalcon/stable/debian/ jessie main" > /etc/apt/sources.list.d/phalcon.list \
-    && echo "deb http://deb.antage.name jessie main" > /etc/apt/sources.list.d/antage.list \
+    && apt-get -y -q -oAcquire::AllowInsecureRepositories=true update \
     && echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sources.list.d/newrelic.list \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends --force-yes install apt-transport-https deb-multimedia-keyring curl ca-certificates \
-    && curl -s http://deb.antage.name/apt.key | apt-key add - \
-    && curl -s https://download.newrelic.com/548C16BF.gpg | apt-key add - \
-    && curl -s https://packagecloud.io/gpg.key | apt-key add - \
+    && apt-get -y -q --no-install-recommends --force-yes -oAcquire::AllowInsecureRepositories=true install deb-multimedia-keyring curl ca-certificates \
+    && curl -sSf https://download.newrelic.com/548C16BF.gpg | apt-key add - \
     && apt-get -y -q update \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends install \
+    && apt-get -y -q --no-install-recommends install \
         curl \
 		ca-certificates \
         imagemagick \
@@ -33,9 +30,7 @@ RUN \
         php5-intl \
         php5-xmlrpc \
         php5-apcu \
-        php5-phalcon \
         php5-mongo \
-        php5-amqp \
         php5-redis \
         php5 \
         php5-dev \
@@ -43,8 +38,6 @@ RUN \
         php5-dbg \
         gdb \
         ffmpeg \
-        imagemagick \
-        flvtool2 \
         ghostscript \
         wget \
         pngquant \
@@ -63,19 +56,14 @@ RUN \
     && rm -rf /tmp/ioncube \
     && rm /tmp/ioncube.tar.gz \
     && echo "; configuration for php ionCube loader module\n; priority=00\nzend_extension=ioncube_loader.so" > /etc/php5/mods-available/ioncube_loader.ini \
-    && curl -#L https://github.com/kelseyhightower/confd/releases/download/v0.10.0/confd-0.10.0-linux-amd64 -o /usr/local/bin/confd \
+    && curl -#L https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64 -o /usr/local/bin/confd \
     && chmod 755 /usr/local/bin/confd \
     && mkdir -p /etc/confd/conf.d \
     && mkdir -p /etc/confd/templates \
     && touch /etc/confd/confd.toml \
-    && gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-    && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64" \
-    && curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64.asc" \
-    && gpg --verify /usr/local/bin/gosu.asc \
-    && rm /usr/local/bin/gosu.asc \
-    && rm -r /root/.gnupg/ \
+    && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.11/gosu-amd64" \
     && chmod +x /usr/local/bin/gosu \
-    && curl -o /usr/local/bin/composer https://getcomposer.org/download/1.4.2/composer.phar \
+    && curl -o /usr/local/bin/composer https://getcomposer.org/download/1.8.5/composer.phar \
     && chown root:root /usr/local/bin/composer \
     && chmod 0755 /usr/local/bin/composer
 
