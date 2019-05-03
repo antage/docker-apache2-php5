@@ -23,6 +23,7 @@ RUN \
         php5-cli \
         php5-mysql \
         php5-gd \
+		php5-imagick \
         php5-mcrypt \
         php5-curl \
         php5-memcache \
