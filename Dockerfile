@@ -13,6 +13,7 @@ RUN \
     && apt-get -y -q update \
     && DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends install \
         curl \
+		ca-certificates \
         imagemagick \
         msmtp-mta \
         apache2-mpm-prefork \
