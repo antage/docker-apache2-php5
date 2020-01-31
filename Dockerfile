@@ -19,7 +19,7 @@ RUN \
         libapr1-dbg \
         libaprutil1-dbg \
         php5-cli \
-        php5-mysql \
+        php5-mysqlnd \
         php5-gd \
 		php5-imagick \
         php5-mcrypt \
