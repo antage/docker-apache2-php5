@@ -41,6 +41,8 @@ RUN \
         ghostscript \
         wget \
         pngquant \
+        jpegoptim \
+		optipng \
         newrelic-php5 \
         git \
     && apt-get clean \
