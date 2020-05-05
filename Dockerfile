@@ -10,7 +10,7 @@ RUN \
     && apt-get -y -q update \
     && apt-get -y -q --no-install-recommends install \
         curl \
-		ca-certificates \
+        ca-certificates \
         imagemagick \
         msmtp-mta \
         apache2-mpm-prefork \
@@ -21,7 +21,7 @@ RUN \
         php5-cli \
         php5-mysql \
         php5-gd \
-		php5-imagick \
+        php5-imagick \
         php5-mcrypt \
         php5-curl \
         php5-memcache \
@@ -42,7 +42,7 @@ RUN \
         wget \
         pngquant \
         jpegoptim \
-		optipng \
+        optipng \
         newrelic-php5 \
         git \
     && apt-get clean \
@@ -102,6 +102,7 @@ ENV APACHE_LOGLEVEL         error
 ENV PHP_TIMEZONE            UTC
 ENV PHP_MBSTRING_FUNC_OVERLOAD 0
 ENV PHP_ALWAYS_POPULATE_RAW_POST_DATA 0
+ENV PHP_MEMORY_LIMIT        "1024M"
 ENV PHP_NEWRELIC_LICENSE_KEY    ""
 ENV PHP_NEWRELIC_APPNAME        ""
 ENV PHP_NEWRELIC_FRAMEWORK      "no_framework"

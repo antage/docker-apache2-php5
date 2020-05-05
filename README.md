@@ -44,6 +44,7 @@ Just run `make`.
   'noreply@example.org')
 * `PHP_MBSTRING_FUNC_OVERLOAD` - `mbstring.func_overload` (0 by default).
 * `PHP_ALWAYS_POPULATE_RAW_POST_DATA` - `always_populate_raw_post_data` (0 by default).
+* `PHP_MEMORY_LIMIT` - `memory_limit` (1GB by default).
 * `PHP_NEWRELIC_LICENSE_KEY` - Newrelic agent license key (empty and disabled by default).
 * `PHP_NEWRELIC_APPNAME` - Newrelic application name (empty by default).
 * `PHP_NEWRELIC_FRAMEWORK` - Newrelic framework name ('no_framework' by default).

@@ -7,5 +7,6 @@ keys = [
     "/php/timezone",
     "/php/smtp",
     "/php/mbstring/func/overload",
-    "/php/always/populate/raw/post/data"
+    "/php/always/populate/raw/post/data",
+    "/php/memory/limit"
 ]
