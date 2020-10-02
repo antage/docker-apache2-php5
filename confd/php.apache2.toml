@@ -8,5 +8,6 @@ keys = [
     "/php/smtp",
     "/php/mbstring/func/overload",
     "/php/always/populate/raw/post/data",
-    "/php/memory/limit"
+    "/php/memory/limit",
+    "/php/session/gc/maxlifetime"
 ]
