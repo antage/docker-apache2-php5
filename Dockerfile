@@ -2,7 +2,7 @@ FROM debian:jessie
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN \
-    echo "deb http://www.deb-multimedia.org jessie main non-free" > /etc/apt/sources.list.d/deb-multimedia.list \
+    echo "deb http://archive.deb-multimedia.org jessie main non-free" > /etc/apt/sources.list.d/deb-multimedia.list \
     && apt-get -y -q -oAcquire::AllowInsecureRepositories=true update \
     && echo "deb http://apt.newrelic.com/debian/ newrelic non-free" > /etc/apt/sources.list.d/newrelic.list \
     && apt-get -y -q --no-install-recommends --force-yes -oAcquire::AllowInsecureRepositories=true install deb-multimedia-keyring curl ca-certificates \
@@ -68,6 +68,10 @@ RUN \
     && curl -o /usr/local/bin/composer https://getcomposer.org/download/1.8.5/composer.phar \
     && chown root:root /usr/local/bin/composer \
     && chmod 0755 /usr/local/bin/composer
+
+RUN \
+    sed -i -E 's/^mozilla\/DST_Root_CA_X3\.crt$/!\0/' /etc/ca-certificates.conf \
+    && update-ca-certificates
 
 RUN \
     rm /etc/php5/apache2/conf.d/* \
