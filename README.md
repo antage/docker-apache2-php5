@@ -8,6 +8,10 @@ Based on debian:jessie.
 
 Just run `make`.
 
+PHP 5.6 is built from the official Debian jessie source with the security patches
+from `security/` applied on top of the official debian patch series (see
+`security/README.md`); the rest of the image is the stock jessie package set.
+
 ## Volumes
 
 * `/var/lib/php5/sessions` (tmpfs is recommended)
